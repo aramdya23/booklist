@@ -12,6 +12,24 @@ var App ={
 
 App.Models.bookModel = Backbone.Model.extend({
 
-    title : "srst"
+    "title": "srst",
+    "name" : 23
 
 });
+
+var Sidebar = Backbone.Model.extend({
+    promptColor: function() {
+        var cssColor = prompt("Пожалуйста, введите CSS-цвет:");
+        this.set({color: cssColor});
+    }
+});
+
+window.sidebar = new Sidebar;
+
+sidebar.on('change:color', function(model, color) {
+    $('#sidebar').css({background: color});
+});
+
+sidebar.set({color: 'white'});
+
+sidebar.promptColor();
