@@ -10,26 +10,43 @@ var App ={
 
 };
 
-App.Models.bookModel = Backbone.Model.extend({
+App.Models.BookModel = Backbone.Model.extend({
 
-    "title": "srst",
-    "name" : 23
+    defaults: {
 
-});
+        "id": 0,
+        "title": "",
+        "author": 0,
+        "publisher": "",
+        "date": 0,
+        "isbn": 0,
+        "language": "",
+        "pages": 0,
+        "barcode": 0,
+        "series": "",
+        "cover": "",
+        "price": 0,
+        "count": 0,
+        "image": ""
 
-var Sidebar = Backbone.Model.extend({
-    promptColor: function() {
-        var cssColor = prompt("Пожалуйста, введите CSS-цвет:");
-        this.set({color: cssColor});
     }
+
 });
 
-window.sidebar = new Sidebar;
 
-sidebar.on('change:color', function(model, color) {
-    $('#sidebar').css({background: color});
+App.Views.BookListView = Backbone.View.extend({
+    tagName: "li",
+
+    render: function () {
+        // this.$el.html(this.tagName);
+        console.log(this.model);
+    }
+
 });
 
-sidebar.set({color: 'white'});
 
-sidebar.promptColor();
+var m = new App.Models.BookModel;
+var a = new App.Views.BookListView(m.defaults);
+a.render();
+
+
